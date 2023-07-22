@@ -74,4 +74,8 @@ function saveCartToLocalStorage() {
   localStorage.setItem('cartTotal', cartTotal.toString());
 }
 
-
+                                // NOTE THAT
+// we can also use a Backend Data Storage as opossed to the LocalStorage being used in this JS file:
+// Instead of using localStorage, you can store the cart data on the server-side using a backend database or session management (remember super globals in PHP).
+// When the user adds items to the cart, you send the data to the server, and the server keeps track of the cart items and total for that user session. When the user navigates to the cart page or any other page, the server can provide the cart data specific to that user.
+// Using a backend solution provides more scalability and security, especially if you have a large number of products or users.
