@@ -44,8 +44,19 @@ function initializeCartUI() {
   cartTotalElement.textContent = cartTotal;
 }
 
+// Function to remove an item from the cart
+function removeFromCart(index) {
+  if (index >= 0 && index < cartItems.length) {
+    const removedItemPrice = cartItems[index].price;
+    cartItems.splice(index, 1); // Remove the item from the cartItems array
+    cartTotal -= removedItemPrice; // Deduct the price of the removed item from the cartTotal
+    saveCartToLocalStorage();
+    updateCartUI();
+  }
+}
+
 // Call the function to initialize the cart UI on page load
-initializeCartUI();
+// initializeCartUI(); // because we added a remove from cart function, this shoild be placed after the local storage function bellow
 
 
 function addToCart(productName, price) {
@@ -55,24 +66,65 @@ function addToCart(productName, price) {
   updateCartUI(); //update front end html on index page or cart page
 }
 
+// function updateCartUI() { //this function will have to change to the not commented updateCartUI function bellow so that we can be able to add a remove from cart function
+//   const cartItemsList = document.getElementById('cart-items');
+//   const cartTotalElement = document.getElementById('cart-total');
+//   cartItemsList.innerHTML = '';
+  
+//   cartItems.forEach(item => {
+//     const listItem = document.createElement('li');
+//     listItem.textContent = `${item.name} - $${item.price}`;
+//     cartItemsList.appendChild(listItem);
+//   });
+  
+//   cartTotalElement.textContent = cartTotal;
+// }
+
+
 function updateCartUI() {
   const cartItemsList = document.getElementById('cart-items');
   const cartTotalElement = document.getElementById('cart-total');
   cartItemsList.innerHTML = '';
-  
-  cartItems.forEach(item => {
+
+  cartItems.forEach((item, index) => {
     const listItem = document.createElement('li');
     listItem.textContent = `${item.name} - $${item.price}`;
+
+    const removeButton = document.createElement('button');
+    removeButton.classList.add('remove-button'); // Add a CSS class for styling
+
+    //we can now give our left a margin in a css file so there is a space between the price and the button
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', () => handleRemoveItem(index));
+
+    //create space between the button 
+    // const span = document.createElement('span');
+    // span.textContent = 'Remove';
+
+    listItem.appendChild(removeButton);
     cartItemsList.appendChild(listItem);
   });
-  
+
   cartTotalElement.textContent = cartTotal;
 }
 
+// Function to handle the "Remove" button
+function handleRemoveItem(index) {
+  removeFromCart(index);
+}
+
+
+
+
+// Function to save cart data to localStorage
 function saveCartToLocalStorage() {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
   localStorage.setItem('cartTotal', cartTotal.toString());
 }
+
+// Function to initialize the cart UI on page load
+initializeCartUI();
+updateCartUI(); //without this line hear, the "Remove" button will only show when 
 
                                 // NOTE THAT
 // we can also use a Backend Data Storage as opossed to the LocalStorage being used in this JS file:
