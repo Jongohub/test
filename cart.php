@@ -18,11 +18,11 @@ require("header.html.php");
   <!-- <button onclick="updateCartUI()">Update Cart UI</button>  why does remove cart button only show when i call this explicitly? -->
 
  <!-- Footer partial -->
-  <!-- <?php 
+  <?php 
   require("footer.html.php");
-  ?> -->
+  ?>
 
-  <script src="js/script.js"></script> 
+  <!-- <script src="js/script.js"></script>  -->
 </body>
 
 <!-- Closes the html tag opened in the header partial - It will work without it but its a good practices to respect best practices as a biginner -->
