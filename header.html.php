@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- you can also make a dynamic title that changes depending on the specific page -->
     <title>Document</title> 
+    <!-- i'll put this scripts in the footer in an effort to enforce industry best practices -->
+    <!-- <script src="js/script.js"></script>  -->
 
 <!-- <?php
 // Using getting curent page from the adress bar's url
@@ -21,10 +23,9 @@
 
     // Check if the current page is in the array and include the corresponding CSS file
     if (in_array($currentPage, $pagesWithSpecificCSS)) {
-        echo '<link rel="stylesheet" type="text/css" href="' . $currentPage . '.vcss">';
+        echo '<link rel="stylesheet" type="text/css" href="' . $currentPage . '.css">';
     }
 ?> -->
-
 
 <!-- <?php
 // getting current page from file name
@@ -39,7 +40,7 @@
 
     // Check if the current page is in the array and include the corresponding CSS file
     if (in_array($currentPage, $pagesWithSpecificCSS)) {
-        echo '<link rel="stylesheet" type="text/css" href="' . $currentPage . '.scss">';
+        echo '<link rel="stylesheet" type="text/css" href="' . $currentPage . '.css">';
     }
     ?> -->
 
@@ -57,10 +58,12 @@
 
     // Check if the current page is in the array and include the corresponding CSS file
     if ($currentPage == "index") {
-        echo '<link rel="stylesheet" type="text/css" href="index.css">';
+        echo '<link rel="stylesheet" type="text/css" href="css/style.css">';
     } 
     elseif ($currentPage == "about") {
         echo '<link rel="stylesheet" type="text/css" href="about.css">';
+    }elseif ($currentPage == "cart") {
+        echo '<link rel="stylesheet" type="text/css" href="css/style.css">';
     }
 
     
